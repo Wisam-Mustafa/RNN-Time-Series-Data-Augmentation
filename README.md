@@ -1,54 +1,86 @@
 # Neural Networks with Sliding Window Data Augmentation for Time Series Classification
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-Keras-orange)
-![Status](https://img.shields.io/badge/Status-Completed-success)
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python&logoColor=white)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-Keras-orange?style=for-the-badge&logo=tensorflow&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
 
 ## ⚠️ Intellectual Property Notice
-> **Note:** This repository serves as technical documentation for my Master's Thesis conducted at **Ural Federal University**. Due to Intellectual Property (IP) regulations regarding the dataset and source code, the raw code cannot be shared publicly. This documentation outlines the methodology, model architecture, and achieved results.
+> **Important:** This repository serves as **technical documentation** for my Master's Thesis conducted at **Ural Federal University**. Due to strict Intellectual Property (IP) regulations regarding the proprietary dataset and source code, the raw code cannot be shared publicly. This documentation outlines the methodology, system architecture, and experimental results to demonstrate technical proficiency.
 
-## 📄 Abstract
-This project explores the impact of **Sliding Window Data Augmentation** on the performance of various Recurrent Neural Network (RNN) architectures for Human Activity Recognition (HAR). The study evaluates models based on **LSTM**, **SimpleRNN**, **GRU**, and a novel **Hybrid RNN**, applied to the classification of five outdoor activities: *Biking, Roller Skiing, Running, Skiing, and Walking*.
+---
 
-## 🚀 Key Features
-*   **Data Augmentation:** Implemented a sliding window technique to address data scarcity and class imbalance.
-*   **Hybrid Architecture:** Designed a model combining SimpleRNN, GRU, and LSTM layers.
-*   **High Performance:** Achieved **93% Overall Accuracy** and **0.94 Macro F1-Score**.
+## 📌 Project Overview
+
+### The Challenge
+With the rapid proliferation of smartwatches and wearables (like Garmin and Apple Watch), **Human Activity Recognition (HAR)** has become a critical feature. However, traditional methods often rely on users manually selecting their sport profiles, which leads to frequent misclassification and erroneous data statistics. 
+*The core challenge was:* How to accurately classify diverse outdoor activities (e.g., Biking vs. Roller Skiing) using raw sensor data, especially when training data is limited or imbalanced?
+
+### The Solution (Abstract)
+This research proposes a robust Deep Learning approach using **Recurrent Neural Networks (RNNs)** combined with **Sliding Window Data Augmentation**. 
+
+By designing and evaluating multiple architectures (**LSTM, SimpleRNN, GRU, and Hybrid RNN**), the study demonstrates that:
+1.  **Data Augmentation** (Sliding Window technique) significantly enhances model generalization and robustness.
+2.  A novel **Hybrid RNN architecture** outperforms standard models in handling multivariate time-series data.
+3.  Optimization of window sizes (256) and step sizes is critical for identifying complex movement patterns.
+
+---
 
 ## 🛠️ Methodology & Workflow
-The system processes multivariate time-series data (Heart Rate, Speed, Altitude) through specific preprocessing pipelines, segmentation, and finally into the Neural Network.
+The system processes multivariate time-series data (Heart Rate, Speed, Altitude) through a specific pipeline: **Preprocessing -> Segmentation -> Augmentation -> Neural Network Classification**.
 
-### System Overview
+### System Architecture
+The diagram below illustrates the end-to-end workflow, from raw data loading to the final classification prediction.
+
 ![System Overview](Figure_5.png) 
 *(Figure 5: Illustrative overview of loading, pre-processing, and window segmentation)*
 
+---
+
 ## 📊 Data Analysis
-The dataset comprises multivariate time series of outdoor sport activities. Below is the exploratory analysis showing temporal patterns.
+The dataset comprises multivariate time series of 228 outdoor sport activities. Exploratory Data Analysis (EDA) was conducted to understand temporal patterns in features like Altitude, Heart Rate, and Speed.
 
 ![Data Analysis](Figure_3.png)
+*(Figure 3: Exploratory Analysis of Temporal Patterns)*
+
+---
 
 ## 🧠 Model Architecture (Hybrid RNN)
-The best-performing model utilized a hybrid approach:
-1.  **Input Layer:** (DIMS, SLEN)
-2.  **Parallel Branches:** SimpleRNN, GRU, and LSTM layers running in parallel.
-3.  **Concatenation:** Merging features from all recurrent layers.
-4.  **Dense Layers:** Fully connected layers with Dropout and Batch Normalization.
-5.  **Output:** Softmax classification for 5 activities.
+The best-performing model utilized a **Hybrid Approach** designed to capture both short-term and long-term dependencies:
+1.  **Input Layer:** Handles multivariate sequences.
+2.  **Recurrent Layers:** A combination of **SimpleRNN**, **GRU**, and **LSTM** layers running in parallel or sequence to extract complex temporal features.
+3.  **Concatenation:** Merging features from different recurrent units.
+4.  **Regularization:** Utilized **Dropout** and **Batch Normalization** to prevent overfitting.
+5.  **Output:** Softmax classification for 5 distinct activities.
 
-## 📈 Results
-The **Hybrid RNN** model with a window size of **256** and step size of **128** yielded the best results, outperforming baseline models significantly.
+---
 
-### Performance Metrics
+## 📈 Experimental Results
+Extensive testing was conducted to optimize the **Window Size** and **Step Size**. The **Hybrid RNN** model with a window size of **256** and step size of **128** yielded the best results, outperforming baseline models.
+
+### Key Metrics
+*   **Overall Accuracy:** **93%**
+*   **Macro F1-Score:** **0.94**
+*   **Validation Loss:** 0.0251
+
+### Performance Table
+The table below details the performance metrics across different window/step configurations.
+
 ![Results Table](Table_15.png)
-*(Table 15: Performance Metrics of Hybrid RNN Model)*
+*(Table 15: Performance Metrics of Hybrid RNN Model with Varying Window and Step Sizes)*
 
 ### Confusion Matrix
-The model showed exceptional accuracy in distinguishing between complex activities like "Running" and "Walking".
+The model showed exceptional accuracy in distinguishing between complex and similar activities (e.g., distinguishing "Running" from "Walking" with high precision).
 
 ![Confusion Matrix](Figure_9.png)
+*(Figure 9: Confusion Matrix for the optimal configuration)*
+
+---
 
 ## 💻 Tech Stack
 *   **Language:** Python
-*   **Libraries:** TensorFlow, Keras, Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn.
-*   **Tools:** Jupyter Notebook.
+*   **Deep Learning:** TensorFlow, Keras
+*   **Data Manipulation:** Pandas, NumPy
+*   **Machine Learning:** Scikit-learn (Model evaluation, Cross-validation)
+*   **Visualization:** Matplotlib, Seaborn
+*   **Environment:** Jupyter Notebook
 
