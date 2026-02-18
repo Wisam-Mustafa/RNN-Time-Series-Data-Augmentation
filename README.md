@@ -32,6 +32,7 @@ The system processes multivariate time-series data (Heart Rate, Speed, Altitude)
 The diagram below illustrates the end-to-end workflow, from raw data loading to the final classification prediction.
 
 ![System Overview](Figure_5.png) 
+<br>
 *(Figure 5: Illustrative overview of loading, pre-processing, and window segmentation)*
 
 ---
@@ -40,6 +41,7 @@ The diagram below illustrates the end-to-end workflow, from raw data loading to 
 The dataset comprises multivariate time series of 228 outdoor sport activities. Exploratory Data Analysis (EDA) was conducted to understand temporal patterns in features like Altitude, Heart Rate, and Speed.
 
 ![Data Analysis](Figure_3.png)
+<br>
 *(Figure 3: Exploratory Analysis of Temporal Patterns)*
 
 ---
@@ -66,12 +68,14 @@ Extensive testing was conducted to optimize the **Window Size** and **Step Size*
 The table below details the performance metrics across different window/step configurations.
 
 ![Results Table](Table_15.png)
+<br>
 *(Table 15: Performance Metrics of Hybrid RNN Model with Varying Window and Step Sizes)*
 
 ### Confusion Matrix
 The model showed exceptional accuracy in distinguishing between complex and similar activities (e.g., distinguishing "Running" from "Walking" with high precision).
 
 ![Confusion Matrix](Figure_9.png)
+<br>
 *(Figure 9: Confusion Matrix for the optimal configuration)*
 
 ---
